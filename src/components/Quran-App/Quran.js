@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 const Quran = () => {
-    const [quran, setQuran] = useState([]);
+    const [qurans, setQuran] = useState([]);
+
+
     useEffect(() => {
-        fetch('http://api.alquran.cloud/v1/surah').then(res => res.json()).then(data => setQuran(data));
+        fetch('https://cdn.jsdelivr.net/npm/quran-json@3.1.2/dist/quran.json').then(res => res.json()).then(data => setQuran(data))
     }, [])
+
     return (
         <div>
-            <li className='text-white'>{quran.revelationType}</li>
+            {/* <p>{quran.name}</p> */}
+            {
+                qurans.map(quran =>
+                    <li>{quran.name}</li>
+                )
+            }
         </div>
     );
 };
